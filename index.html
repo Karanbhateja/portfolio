@@ -1,29 +1,508 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Cybersecurity Engineer - Interactive Terminal Portfolio"
-    />
-    <title>Cybersecurity Engineer | Interactive Terminal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: 'Courier New', monospace;
-        background: #000;
-      }
-    </style>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karan Bhateja — Cybersecurity Portfolio</title>
+  <meta name="description" content="Karan Bhateja — Cybersecurity Engineer & Automation Developer. Specializing in network security, ISO 27001 audits, and security tooling." />
+  <meta property="og:title" content="Karan Bhateja | Cybersecurity Portfolio" />
+  <meta property="og:description" content="Cybersecurity Engineer. Automation & Security Tooling Developer." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡</text></svg>" />
+</head>
+<body>
+
+<!-- ─── Custom Cursor ──────────────────────────────────────────────────────── -->
+<div id="cursorOuter" aria-hidden="true"></div>
+<div id="cursorDot"   aria-hidden="true"></div>
+
+<!-- ─── Matrix Canvas ─────────────────────────────────────────────────────── -->
+<canvas id="matrixCanvas" aria-hidden="true"></canvas>
+
+<!-- ─── Navbar ─────────────────────────────────────────────────────────────── -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a href="#home" class="nav-logo" aria-label="Home">
+      <span class="bracket">[</span>KB<span class="bracket">]</span>&gt;<span class="cursor">_</span>
+    </a>
+
+    <ul class="nav-links" id="navMenu" role="list">
+      <li><a href="#about"    class="nav-link">About</a></li>
+      <li><a href="#skills"   class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact"  class="nav-link">Contact</a></li>
+      <li>
+        <button class="nav-term-btn launch-terminal" aria-label="Open terminal">
+          &gt;_ Terminal
+        </button>
+      </li>
+    </ul>
+
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── Hero ─────────────────────────────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="container hero-container">
+
+    <!-- Left: Text content -->
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Available for opportunities
+      </div>
+
+      <h1 class="hero-name glitch" data-text="Karan Bhateja">
+        <span class="accent">Karan</span> Bhateja
+      </h1>
+
+      <div class="hero-role">
+        &gt;&nbsp;<span id="typewriter"></span><span class="cursor-typer"></span>
+      </div>
+
+      <p class="hero-desc">
+        Cybersecurity professional building practical security tools, automation
+        workflows, and real-world defensive solutions. From network scanners to
+        ISO 27001 automation — I engineer tools that solve real problems.
+      </p>
+
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">
+          <span>⚡</span> View Projects
+        </a>
+        <button class="btn btn-secondary launch-terminal">
+          <span>&gt;_</span> Launch Terminal
+        </button>
+        <a href="https://github.com/karanbhateja" target="_blank" rel="noopener" class="btn btn-ghost">
+          <span>⎇</span> GitHub
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">4+</div>
+          <div class="stat-label">Projects Built</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">ISO</div>
+          <div class="stat-label">27001 Aligned</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Tools & Platforms</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Lines of Script</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Hero Terminal (fades on scroll) -->
+    <div class="hero-terminal" id="heroTerminal" aria-hidden="true">
+      <div class="ht-titlebar">
+        <div class="ht-dots">
+          <span class="ht-dot dot-r"></span>
+          <span class="ht-dot dot-y"></span>
+          <span class="ht-dot dot-g"></span>
+        </div>
+        <span class="ht-title">karan@portfolio — bash</span>
+      </div>
+      <div class="ht-body" id="htBody">
+        <!-- auto-typed content goes here via JS -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scroll hint -->
+  <a href="#about" class="scroll-hint" aria-label="Scroll down">
+    <span class="scroll-hint-text">scroll</span>
+    <span class="scroll-hint-arrow">↓</span>
+  </a>
+</section>
+
+<!-- ─── About ────────────────────────────────────────────────────────────── -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">// 01 — who am i</p>
+      <h2 class="section-title">About <span>Me</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          I'm a <span class="highlight">cybersecurity professional</span> focused on building practical security tools,
+          automation workflows, and real-world defensive solutions. I work across offensive
+          testing, internal audits, and infrastructure hardening — with a strong focus on
+          scripting and automation to simplify complex security tasks.
+        </p>
+        <p>
+          I enjoy building tools that solve real problems — from <span class="highlight">network scanners</span> and
+          ISO 27001 automation to <span class="highlight">secure licensing systems</span> and lightweight security
+          infrastructure using Linux and Raspberry Pi.
+        </p>
+        <p>
+          My approach blends technical depth with practical output: every tool I build
+          should be deployable, documented, and actually useful in a real security environment.
+        </p>
+      </div>
+
+      <div class="about-card reveal">
+        <div class="about-card-header">
+          <span class="wdot wdot-r"></span>
+          <span class="wdot wdot-y"></span>
+          <span class="wdot wdot-g"></span>
+          <span class="card-title">identity.json</span>
+        </div>
+        <div class="about-card-body">
+          <div class="info-row"><span class="key">name</span><span class="val">Karan Bhateja</span></div>
+          <div class="info-row"><span class="key">role</span><span class="val">Cybersecurity Engineer</span></div>
+          <div class="info-row"><span class="key">focus</span><span class="val">Offensive Testing · Automation</span></div>
+          <hr class="info-divider">
+          <div class="info-row"><span class="key">expertise</span><span class="val">Network Security, ISO 27001, Security Tools</span></div>
+          <div class="info-row"><span class="key">os</span><span class="val">Kali Linux / Debian</span></div>
+          <div class="info-row"><span class="key">hardware</span><span class="val">Raspberry Pi Security Lab</span></div>
+          <hr class="info-divider">
+          <div class="info-row"><span class="key">github</span><span class="val"><a href="https://github.com/karanbhateja" target="_blank" rel="noopener">github.com/karanbhateja</a></span></div>
+          <div class="info-row"><span class="key">status</span><span class="val" style="color:var(--green)">● Available</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Skills ────────────────────────────────────────────────────────────── -->
+<section class="section skills-section" id="skills">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">// 02 — what i know</p>
+      <h2 class="section-title">Technical <span>Skills</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="skills-grid">
+
+      <!-- Languages -->
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">💻</div>
+        <div class="skill-card-title">Languages</div>
+
+        <div class="skill-item">
+          <div class="skill-item-top"><span class="skill-name">Python</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-top"><span class="skill-name">Bash / Shell</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-top"><span class="skill-name">PowerShell</span><span class="skill-pct">65%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="65%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-top"><span class="skill-name">JavaScript</span><span class="skill-pct">45%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="45%"></div></div>
+        </div>
+      </div>
+
+      <!-- Cybersecurity -->
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🔐</div>
+        <div class="skill-card-title">Cybersecurity</div>
+
+        <div class="skill-item">
+          <div class="skill-item-top"><span class="skill-name">Network Security</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-top"><span class="skill-name">ISO 27001 Audits</span><span class="skill-pct">80%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="80%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-top"><span class="skill-name">Security Automation</span><span class="skill-pct">88%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="88%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-top"><span class="skill-name">Web Security</span><span class="skill-pct">60%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="60%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-top"><span class="skill-name">Secure Infra Setup</span><span class="skill-pct">82%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="82%"></div></div>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🛠</div>
+        <div class="skill-card-title">Tools & Platforms</div>
+        <div class="tools-chips">
+          <span class="chip">Kali Linux</span>
+          <span class="chip">Nmap</span>
+          <span class="chip">OpenSSH</span>
+          <span class="chip">Wireshark</span>
+          <span class="chip">Raspberry Pi</span>
+          <span class="chip">Git / GitHub</span>
+          <span class="chip">Linux Server</span>
+          <span class="chip">Metasploit</span>
+          <span class="chip">Burp Suite</span>
+          <span class="chip">Tmux</span>
+          <span class="chip">Docker</span>
+          <span class="chip">cron / systemd</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Projects ──────────────────────────────────────────────────────────── -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">// 03 — what i've built</p>
+      <h2 class="section-title">Featured <span>Projects</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card reveal">
+        <div class="project-card-header">
+          <span class="project-icon">🔐</span>
+          <div class="project-links">
+            <a href="https://github.com/karanbhateja" target="_blank" rel="noopener" class="proj-link" title="GitHub">⎇</a>
+          </div>
+        </div>
+        <div class="project-id">PROJECT-01</div>
+        <h3 class="project-title">ISO 27001 Network Audit Toolkit</h3>
+        <p class="project-desc">
+          Automated internal network scanning toolkit designed for ISO 27001-style audits.
+          Includes live host discovery, service enumeration, and structured reporting to
+          simplify internal compliance checks.
+        </p>
+        <div class="project-highlights">
+          <span class="highlight-item">Automated network discovery with structured reporting</span>
+          <span class="highlight-item">Audit-ready output format for compliance teams</span>
+          <span class="highlight-item">Designed for internal security teams</span>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Nmap</span>
+          <span class="tag">ISO 27001</span>
+          <span class="tag">Automation</span>
+          <span class="tag">Reporting</span>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card reveal">
+        <div class="project-card-header">
+          <span class="project-icon">🛡</span>
+          <div class="project-links"></div>
+        </div>
+        <div class="project-id">PROJECT-02</div>
+        <h3 class="project-title">Security Script Obfuscation &amp; Licensing System</h3>
+        <p class="project-desc">
+          A secure licensing and obfuscation system for protecting proprietary security scripts.
+          Explores cryptographic signing and license validation to prevent unauthorized use
+          or redistribution.
+        </p>
+        <div class="project-highlights">
+          <span class="highlight-item">Cryptographic signing &amp; license validation logic</span>
+          <span class="highlight-item">Script protection and obfuscation concepts</span>
+          <span class="highlight-item">Developer-facing security implementation</span>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Cryptography</span>
+          <span class="tag">Licensing</span>
+          <span class="tag">Obfuscation</span>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card reveal">
+        <div class="project-card-header">
+          <span class="project-icon">📡</span>
+          <div class="project-links"></div>
+        </div>
+        <div class="project-id">PROJECT-03</div>
+        <h3 class="project-title">Raspberry Pi Security Lab</h3>
+        <p class="project-desc">
+          Custom lightweight security lab built using Raspberry Pi for testing SSH tunneling,
+          remote access, and network segmentation. Used for experimentation with portable
+          security infrastructure.
+        </p>
+        <div class="project-highlights">
+          <span class="highlight-item">SSH tunneling &amp; remote access setups</span>
+          <span class="highlight-item">Network isolation &amp; segmentation experiments</span>
+          <span class="highlight-item">Low-cost, portable security lab design</span>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Linux</span>
+          <span class="tag">SSH</span>
+          <span class="tag">Raspberry Pi</span>
+          <span class="tag">Networking</span>
+          <span class="tag">Infra</span>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card reveal">
+        <div class="project-card-header">
+          <span class="project-icon">⚡</span>
+          <div class="project-links">
+            <a href="https://github.com/karanbhateja" target="_blank" rel="noopener" class="proj-link" title="GitHub">⎇</a>
+          </div>
+        </div>
+        <div class="project-id">PROJECT-04</div>
+        <h3 class="project-title">Security Automation Scripts</h3>
+        <p class="project-desc">
+          Collection of automation tools for common cybersecurity workflows including
+          scanning, reporting, and infrastructure setup. Covers network scanners, SSH
+          utilities, and deployment scripts.
+        </p>
+        <div class="project-highlights">
+          <span class="highlight-item">Network scanners &amp; enumeration scripts</span>
+          <span class="highlight-item">SSH automation &amp; tunnel utilities</span>
+          <span class="highlight-item">Security deployment &amp; setup scripts</span>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Bash</span>
+          <span class="tag">Python</span>
+          <span class="tag">Automation</span>
+          <span class="tag">SSH</span>
+          <span class="tag">Scripts</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Contact ───────────────────────────────────────────────────────────── -->
+<section class="section contact-section" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">// 04 — get in touch</p>
+      <h2 class="section-title">Contact <span>Me</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="contact-inner">
+      <div class="contact-text reveal">
+        <p>
+          I'm open to freelance work, collaboration on security projects, and full-time
+          opportunities in cybersecurity or security tooling. Reach out via GitHub or
+          try the interactive terminal.
+        </p>
+        <div class="contact-links">
+          <a href="https://github.com/karanbhateja" target="_blank" rel="noopener" class="contact-link">
+            <span class="link-icon">⎇</span>
+            <div>
+              <span class="link-label">GitHub</span>
+              <span class="link-value">github.com/karanbhateja</span>
+            </div>
+          </a>
+          <a href="mailto:" class="contact-link">
+            <span class="link-icon">✉</span>
+            <div>
+              <span class="link-label">Email</span>
+              <span class="link-value">Available on request</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="terminal-shortcut reveal">
+        <div class="ts-header">
+          <span class="wdot wdot-r"></span>
+          <span class="wdot wdot-y"></span>
+          <span class="wdot wdot-g"></span>
+          <span class="card-title" style="margin-left:8px">&gt;_ interactive terminal</span>
+        </div>
+        <div class="ts-body">
+          <p class="ts-desc">
+            Try out the interactive terminal — explore my profile, run a fake network scan,
+            or just type <code style="color:var(--green)">help</code>.
+          </p>
+          <div class="cmd-hints">
+            <span class="cmd-hint">help</span>
+            <span class="cmd-hint">whoami</span>
+            <span class="cmd-hint">projects</span>
+            <span class="cmd-hint">skills</span>
+            <span class="cmd-hint">scan</span>
+            <span class="cmd-hint">banner</span>
+            <span class="cmd-hint">contact</span>
+          </div>
+          <button class="btn btn-primary launch-terminal" style="width:100%; justify-content:center;">
+            &gt;_ Launch Terminal
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ───────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="container footer-inner">
+    <p class="footer-copy">
+      © 2025 <span>Karan Bhateja</span> · Built with passion &amp; too much terminal time
+    </p>
+    <div class="footer-links">
+      <a href="https://github.com/karanbhateja" target="_blank" rel="noopener">GitHub</a>
+      <a href="#home">Top ↑</a>
+      <button class="launch-terminal" style="background:none;border:none;color:var(--dim);font-size:0.75rem;cursor:none;font-family:var(--font-mono);padding:0;" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--dim)'">&gt;_ Terminal</button>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── Terminal Modal ────────────────────────────────────────────────────── -->
+<div class="terminal-modal" id="terminalModal" role="dialog" aria-modal="true" aria-label="Interactive terminal">
+  <div class="terminal-window">
+    <div class="term-titlebar">
+      <div class="term-dots">
+        <span class="term-dot dot-r" id="termClose" title="Close"></span>
+        <span class="term-dot dot-y"></span>
+        <span class="term-dot dot-g"></span>
+      </div>
+      <span class="term-title-text">karan@portfolio — bash — 80×24</span>
+      <button class="term-close-btn" id="termCloseBtn" aria-label="Close terminal">✕</button>
+    </div>
+
+    <div class="term-body" id="termBody">
+      <div id="termOutput"></div>
+    </div>
+
+    <div class="term-input-row">
+      <span class="term-input-prompt">karan@portfolio:~$</span>
+      <input
+        type="text"
+        id="termInput"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="type a command..."
+        aria-label="Terminal input"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- ─── Scripts ───────────────────────────────────────────────────────────── -->
+<script src="js/matrix.js"></script>
+<script src="js/terminal.js"></script>
+<script src="js/main.js"></script>
+
+</body>
 </html>
