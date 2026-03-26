@@ -1,60 +1,75 @@
-// Matrix Rain Effect
+// Enhanced Matrix Rain
 (function () {
-  const canvas = document.getElementById('matrixCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById('matrixCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
 
-  let W = canvas.width = window.innerWidth;
-  let H = canvas.height = window.innerHeight;
+    let W = canvas.width  = window.innerWidth;
+    let H = canvas.height = window.innerHeight;
 
-  const fontSize = 14;
-  const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>/\\|{}[]#$%&@!?';
-  let cols = Math.floor(W / fontSize);
-  let drops = Array(cols).fill(1);
+    const chars  = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>/\\|{}[]#$%@!?';
+    const FONT   = 13;
+    const SPEEDS = [1, 1, 1, 2]; // weighted speed pool
 
-  function draw() {
-    ctx.fillStyle = 'rgba(13,13,13,0.05)';
-    ctx.fillRect(0, 0, W, H);
+    let cols, drops, speeds, opacity;
 
-    ctx.fillStyle = '#00ff41';
-    ctx.font = fontSize + 'px JetBrains Mono, monospace';
-
-    for (let i = 0; i < drops.length; i++) {
-      const char = chars[Math.floor(Math.random() * chars.length)];
-      const x = i * fontSize;
-      const y = drops[i] * fontSize;
-
-      // Brighter head character
-      if (drops[i] * fontSize < H * 0.1) {
-        ctx.fillStyle = '#ffffff';
-      } else {
-        ctx.fillStyle = '#00ff41';
-      }
-
-      ctx.fillText(char, x, y);
-
-      if (y > H && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
+    function reset() {
+        cols   = Math.floor(W / FONT);
+        drops  = Array.from({ length: cols }, () => Math.random() * -H / FONT);
+        speeds = Array.from({ length: cols }, () => SPEEDS[Math.floor(Math.random() * SPEEDS.length)]);
+        opacity= Array.from({ length: cols }, () => 0.4 + Math.random() * 0.6);
     }
-  }
+    reset();
 
-  let interval = setInterval(draw, 45);
+    function draw() {
+        // Soft fade trail
+        ctx.fillStyle = 'rgba(6,8,9,0.055)';
+        ctx.fillRect(0, 0, W, H);
 
-  window.addEventListener('resize', () => {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-    cols = Math.floor(W / fontSize);
-    drops = Array(cols).fill(1);
-  });
+        ctx.font = FONT + 'px JetBrains Mono, monospace';
 
-  // Pause matrix when tab is hidden to save resources
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      clearInterval(interval);
-    } else {
-      interval = setInterval(draw, 45);
+        for (let i = 0; i < cols; i++) {
+            const y = drops[i] * FONT;
+            if (y < 0) { drops[i] += speeds[i]; continue; }
+
+            const char = chars[Math.floor(Math.random() * chars.length)];
+            const x    = i * FONT;
+
+            // Head character — white/bright green
+            if (drops[i] % 22 < 1) {
+                ctx.fillStyle = `rgba(220,255,220,${opacity[i]})`;
+            } else if (Math.random() > 0.98) {
+                // Occasional cyan highlight
+                ctx.fillStyle = `rgba(0,229,255,${opacity[i] * 0.7})`;
+            } else {
+                ctx.fillStyle = `rgba(0,255,65,${opacity[i] * 0.55})`;
+            }
+
+            ctx.fillText(char, x, y);
+
+            // Reset drop
+            if (y > H && Math.random() > 0.974) {
+                drops[i]  = Math.random() * -10;
+                speeds[i] = SPEEDS[Math.floor(Math.random() * SPEEDS.length)];
+                opacity[i]= 0.4 + Math.random() * 0.6;
+            }
+            drops[i] += speeds[i];
+        }
     }
-  });
+
+    let raf = null;
+    function loop() { draw(); raf = requestAnimationFrame(loop); }
+    loop();
+
+    // Pause when hidden
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) { cancelAnimationFrame(raf); raf = null; }
+        else { if (!raf) loop(); }
+    });
+
+    window.addEventListener('resize', () => {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+        reset();
+    });
 })();

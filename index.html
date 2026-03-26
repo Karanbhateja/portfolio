@@ -4,28 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Karan Bhateja — Cybersecurity Portfolio</title>
-  <meta name="description" content="Karan Bhateja — Cybersecurity Engineer & Automation Developer. Specializing in network security, ISO 27001 audits, and security tooling." />
-  <meta property="og:title" content="Karan Bhateja | Cybersecurity Portfolio" />
+  <meta name="description" content="Karan Bhateja — Cybersecurity Engineer & Automation Developer. Network security, ISO 27001 audits, and security tooling." />
+  <meta property="og:title"       content="Karan Bhateja | Cybersecurity Portfolio" />
   <meta property="og:description" content="Cybersecurity Engineer. Automation & Security Tooling Developer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡</text></svg>" />
 </head>
 <body>
 
-<!-- ─── Custom Cursor ──────────────────────────────────────────────────────── -->
+<!-- Vignette -->
+<div id="vignette" aria-hidden="true"></div>
+
+<!-- Custom Cursor -->
 <div id="cursorOuter" aria-hidden="true"></div>
 <div id="cursorDot"   aria-hidden="true"></div>
 
-<!-- ─── Matrix Canvas ─────────────────────────────────────────────────────── -->
+<!-- Matrix Canvas -->
 <canvas id="matrixCanvas" aria-hidden="true"></canvas>
 
-<!-- ─── Navbar ─────────────────────────────────────────────────────────────── -->
+<!-- ─── Navbar ──────────────────────────────────────────────────────────────── -->
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="container nav-inner">
     <a href="#home" class="nav-logo" aria-label="Home">
       <span class="bracket">[</span>KB<span class="bracket">]</span>&gt;<span class="cursor">_</span>
     </a>
-
     <ul class="nav-links" id="navMenu" role="list">
       <li><a href="#about"    class="nav-link">About</a></li>
       <li><a href="#skills"   class="nav-link">Skills</a></li>
@@ -37,18 +41,20 @@
         </button>
       </li>
     </ul>
-
     <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
-<!-- ─── Hero ─────────────────────────────────────────────────────────────── -->
+<!-- ─── Hero ────────────────────────────────────────────────────────────────── -->
 <section class="hero" id="home">
+  <div class="hero-blob"   aria-hidden="true"></div>
+  <div class="hero-blob-2" aria-hidden="true"></div>
+
   <div class="container hero-container">
 
-    <!-- Left: Text content -->
+    <!-- Left -->
     <div class="hero-content">
       <div class="hero-badge">
         <span class="dot"></span>
@@ -56,7 +62,7 @@
       </div>
 
       <h1 class="hero-name glitch" data-text="Karan Bhateja">
-        <span class="accent">Karan</span> Bhateja
+        <span class="accent">Karan</span>&nbsp;<span class="accent2">Bhateja</span>
       </h1>
 
       <div class="hero-role">
@@ -101,7 +107,7 @@
       </div>
     </div>
 
-    <!-- Right: Hero Terminal (fades on scroll) -->
+    <!-- Right: Live terminal -->
     <div class="hero-terminal" id="heroTerminal" aria-hidden="true">
       <div class="ht-titlebar">
         <div class="ht-dots">
@@ -111,40 +117,37 @@
         </div>
         <span class="ht-title">karan@portfolio — bash</span>
       </div>
-      <div class="ht-body" id="htBody">
-        <!-- auto-typed content goes here via JS -->
-      </div>
+      <div class="ht-body" id="htBody"></div>
     </div>
 
   </div>
 
-  <!-- Scroll hint -->
   <a href="#about" class="scroll-hint" aria-label="Scroll down">
     <span class="scroll-hint-text">scroll</span>
     <span class="scroll-hint-arrow">↓</span>
   </a>
 </section>
 
-<!-- ─── About ────────────────────────────────────────────────────────────── -->
+<!-- ─── About ───────────────────────────────────────────────────────────────── -->
 <section class="section" id="about">
   <div class="container">
     <div class="section-header reveal">
       <p class="section-label">// 01 — who am i</p>
       <h2 class="section-title">About <span>Me</span></h2>
-      <div class="section-line"></div>
+      <div class="section-sep"></div>
     </div>
 
     <div class="about-grid">
       <div class="about-text reveal">
         <p>
-          I'm a <span class="highlight">cybersecurity professional</span> focused on building practical security tools,
-          automation workflows, and real-world defensive solutions. I work across offensive
-          testing, internal audits, and infrastructure hardening — with a strong focus on
-          scripting and automation to simplify complex security tasks.
+          I'm a <span class="hl">cybersecurity professional</span> focused on building practical security
+          tools, automation workflows, and real-world defensive solutions. I work across offensive
+          testing, internal audits, and infrastructure hardening — with a strong focus on scripting
+          and automation to simplify complex security tasks.
         </p>
         <p>
-          I enjoy building tools that solve real problems — from <span class="highlight">network scanners</span> and
-          ISO 27001 automation to <span class="highlight">secure licensing systems</span> and lightweight security
+          I enjoy building tools that solve real problems — from <span class="hl">network scanners</span> and
+          ISO 27001 automation to <span class="hl">secure licensing systems</span> and lightweight security
           infrastructure using Linux and Raspberry Pi.
         </p>
         <p>
@@ -154,7 +157,7 @@
       </div>
 
       <div class="about-card reveal">
-        <div class="about-card-header">
+        <div class="card-win-bar">
           <span class="wdot wdot-r"></span>
           <span class="wdot wdot-y"></span>
           <span class="wdot wdot-g"></span>
@@ -165,7 +168,7 @@
           <div class="info-row"><span class="key">role</span><span class="val">Cybersecurity Engineer</span></div>
           <div class="info-row"><span class="key">focus</span><span class="val">Offensive Testing · Automation</span></div>
           <hr class="info-divider">
-          <div class="info-row"><span class="key">expertise</span><span class="val">Network Security, ISO 27001, Security Tools</span></div>
+          <div class="info-row"><span class="key">expertise</span><span class="val">Network Security, ISO 27001, Tooling</span></div>
           <div class="info-row"><span class="key">os</span><span class="val">Kali Linux / Debian</span></div>
           <div class="info-row"><span class="key">hardware</span><span class="val">Raspberry Pi Security Lab</span></div>
           <hr class="info-divider">
@@ -177,22 +180,20 @@
   </div>
 </section>
 
-<!-- ─── Skills ────────────────────────────────────────────────────────────── -->
+<!-- ─── Skills ───────────────────────────────────────────────────────────────── -->
 <section class="section skills-section" id="skills">
   <div class="container">
     <div class="section-header reveal">
       <p class="section-label">// 02 — what i know</p>
       <h2 class="section-title">Technical <span>Skills</span></h2>
-      <div class="section-line"></div>
+      <div class="section-sep"></div>
     </div>
 
-    <div class="skills-grid">
+    <div class="skills-grid stagger">
 
-      <!-- Languages -->
       <div class="skill-card reveal">
         <div class="skill-card-icon">💻</div>
         <div class="skill-card-title">Languages</div>
-
         <div class="skill-item">
           <div class="skill-item-top"><span class="skill-name">Python</span><span class="skill-pct">90%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-pct="90%"></div></div>
@@ -211,11 +212,9 @@
         </div>
       </div>
 
-      <!-- Cybersecurity -->
       <div class="skill-card reveal">
         <div class="skill-card-icon">🔐</div>
         <div class="skill-card-title">Cybersecurity</div>
-
         <div class="skill-item">
           <div class="skill-item-top"><span class="skill-name">Network Security</span><span class="skill-pct">85%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-pct="85%"></div></div>
@@ -233,12 +232,11 @@
           <div class="skill-bar"><div class="skill-fill" data-pct="60%"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-item-top"><span class="skill-name">Secure Infra Setup</span><span class="skill-pct">82%</span></div>
+          <div class="skill-item-top"><span class="skill-name">Secure Infrastructure</span><span class="skill-pct">82%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-pct="82%"></div></div>
         </div>
       </div>
 
-      <!-- Tools -->
       <div class="skill-card reveal">
         <div class="skill-card-icon">🛠</div>
         <div class="skill-card-title">Tools & Platforms</div>
@@ -262,125 +260,139 @@
   </div>
 </section>
 
-<!-- ─── Projects ──────────────────────────────────────────────────────────── -->
+<!-- ─── Projects ─────────────────────────────────────────────────────────────── -->
 <section class="section" id="projects">
   <div class="container">
     <div class="section-header reveal">
       <p class="section-label">// 03 — what i've built</p>
       <h2 class="section-title">Featured <span>Projects</span></h2>
-      <div class="section-line"></div>
+      <div class="section-sep"></div>
     </div>
 
-    <div class="projects-grid">
+    <div class="projects-grid stagger">
 
-      <!-- Project 1 -->
-      <div class="project-card reveal">
-        <div class="project-card-header">
-          <span class="project-icon">🔐</span>
-          <div class="project-links">
-            <a href="https://github.com/karanbhateja" target="_blank" rel="noopener" class="proj-link" title="GitHub">⎇</a>
+      <!-- Featured (full-width) -->
+      <div class="project-card featured reveal" data-tilt>
+        <div class="project-inner">
+          <div>
+            <div class="project-card-header">
+              <span class="project-icon">🔐</span>
+              <div class="project-links">
+                <a href="https://github.com/karanbhateja" target="_blank" rel="noopener" class="proj-link" title="View on GitHub">⎇</a>
+              </div>
+            </div>
+            <div class="project-id">PROJECT-01 · FEATURED</div>
+            <h3 class="project-title">ISO 27001 Network Audit Toolkit</h3>
+            <p class="project-desc">
+              Automated internal network scanning toolkit for ISO 27001-style audits.
+              Includes live host discovery, service enumeration, and structured compliance
+              reporting — designed to make internal security audits faster and reproducible.
+            </p>
           </div>
-        </div>
-        <div class="project-id">PROJECT-01</div>
-        <h3 class="project-title">ISO 27001 Network Audit Toolkit</h3>
-        <p class="project-desc">
-          Automated internal network scanning toolkit designed for ISO 27001-style audits.
-          Includes live host discovery, service enumeration, and structured reporting to
-          simplify internal compliance checks.
-        </p>
-        <div class="project-highlights">
-          <span class="highlight-item">Automated network discovery with structured reporting</span>
-          <span class="highlight-item">Audit-ready output format for compliance teams</span>
-          <span class="highlight-item">Designed for internal security teams</span>
-        </div>
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Nmap</span>
-          <span class="tag">ISO 27001</span>
-          <span class="tag">Automation</span>
-          <span class="tag">Reporting</span>
+          <div>
+            <div class="project-highlights">
+              <span class="highlight-item">Automated network discovery with structured reporting</span>
+              <span class="highlight-item">Audit-ready output format for compliance teams</span>
+              <span class="highlight-item">Designed for real internal security workflows</span>
+            </div>
+            <div class="project-footer" style="margin-top:16px">
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Nmap</span>
+                <span class="tag">ISO 27001</span>
+                <span class="tag">Automation</span>
+                <span class="tag">Reporting</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Project 2 -->
-      <div class="project-card reveal">
-        <div class="project-card-header">
-          <span class="project-icon">🛡</span>
-          <div class="project-links"></div>
-        </div>
-        <div class="project-id">PROJECT-02</div>
-        <h3 class="project-title">Security Script Obfuscation &amp; Licensing System</h3>
-        <p class="project-desc">
-          A secure licensing and obfuscation system for protecting proprietary security scripts.
-          Explores cryptographic signing and license validation to prevent unauthorized use
-          or redistribution.
-        </p>
-        <div class="project-highlights">
-          <span class="highlight-item">Cryptographic signing &amp; license validation logic</span>
-          <span class="highlight-item">Script protection and obfuscation concepts</span>
-          <span class="highlight-item">Developer-facing security implementation</span>
-        </div>
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Cryptography</span>
-          <span class="tag">Licensing</span>
-          <span class="tag">Obfuscation</span>
+      <div class="project-card reveal" data-tilt>
+        <div class="project-inner">
+          <div class="project-card-header">
+            <span class="project-icon">🛡</span>
+            <div class="project-links"></div>
+          </div>
+          <div class="project-id">PROJECT-02</div>
+          <h3 class="project-title">Security Script Obfuscation &amp; Licensing</h3>
+          <p class="project-desc">
+            Cryptographic signing and license validation system for protecting proprietary
+            security scripts from unauthorized use or redistribution.
+          </p>
+          <div class="project-highlights">
+            <span class="highlight-item">Cryptographic signing &amp; license validation</span>
+            <span class="highlight-item">Script protection and obfuscation</span>
+            <span class="highlight-item">Developer-facing security implementation</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Cryptography</span>
+              <span class="tag">Licensing</span>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Project 3 -->
-      <div class="project-card reveal">
-        <div class="project-card-header">
-          <span class="project-icon">📡</span>
-          <div class="project-links"></div>
-        </div>
-        <div class="project-id">PROJECT-03</div>
-        <h3 class="project-title">Raspberry Pi Security Lab</h3>
-        <p class="project-desc">
-          Custom lightweight security lab built using Raspberry Pi for testing SSH tunneling,
-          remote access, and network segmentation. Used for experimentation with portable
-          security infrastructure.
-        </p>
-        <div class="project-highlights">
-          <span class="highlight-item">SSH tunneling &amp; remote access setups</span>
-          <span class="highlight-item">Network isolation &amp; segmentation experiments</span>
-          <span class="highlight-item">Low-cost, portable security lab design</span>
-        </div>
-        <div class="project-tags">
-          <span class="tag">Linux</span>
-          <span class="tag">SSH</span>
-          <span class="tag">Raspberry Pi</span>
-          <span class="tag">Networking</span>
-          <span class="tag">Infra</span>
+      <div class="project-card reveal" data-tilt>
+        <div class="project-inner">
+          <div class="project-card-header">
+            <span class="project-icon">📡</span>
+            <div class="project-links"></div>
+          </div>
+          <div class="project-id">PROJECT-03</div>
+          <h3 class="project-title">Raspberry Pi Security Lab</h3>
+          <p class="project-desc">
+            Custom lightweight security lab on Raspberry Pi for SSH tunneling, remote access,
+            and network segmentation experiments with portable, low-cost hardware.
+          </p>
+          <div class="project-highlights">
+            <span class="highlight-item">SSH tunneling &amp; remote access setups</span>
+            <span class="highlight-item">Network isolation &amp; segmentation</span>
+            <span class="highlight-item">Portable, low-cost security lab</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="tag">Linux</span>
+              <span class="tag">SSH</span>
+              <span class="tag">Raspberry Pi</span>
+              <span class="tag">Networking</span>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Project 4 -->
-      <div class="project-card reveal">
-        <div class="project-card-header">
-          <span class="project-icon">⚡</span>
-          <div class="project-links">
-            <a href="https://github.com/karanbhateja" target="_blank" rel="noopener" class="proj-link" title="GitHub">⎇</a>
+      <div class="project-card reveal" data-tilt>
+        <div class="project-inner">
+          <div class="project-card-header">
+            <span class="project-icon">⚡</span>
+            <div class="project-links">
+              <a href="https://github.com/karanbhateja" target="_blank" rel="noopener" class="proj-link" title="GitHub">⎇</a>
+            </div>
           </div>
-        </div>
-        <div class="project-id">PROJECT-04</div>
-        <h3 class="project-title">Security Automation Scripts</h3>
-        <p class="project-desc">
-          Collection of automation tools for common cybersecurity workflows including
-          scanning, reporting, and infrastructure setup. Covers network scanners, SSH
-          utilities, and deployment scripts.
-        </p>
-        <div class="project-highlights">
-          <span class="highlight-item">Network scanners &amp; enumeration scripts</span>
-          <span class="highlight-item">SSH automation &amp; tunnel utilities</span>
-          <span class="highlight-item">Security deployment &amp; setup scripts</span>
-        </div>
-        <div class="project-tags">
-          <span class="tag">Bash</span>
-          <span class="tag">Python</span>
-          <span class="tag">Automation</span>
-          <span class="tag">SSH</span>
-          <span class="tag">Scripts</span>
+          <div class="project-id">PROJECT-04</div>
+          <h3 class="project-title">Security Automation Scripts</h3>
+          <p class="project-desc">
+            Collection of automation tools for cybersecurity workflows — network scanners,
+            SSH utilities, and deployment scripts for common security tasks.
+          </p>
+          <div class="project-highlights">
+            <span class="highlight-item">Network scanners &amp; enumeration scripts</span>
+            <span class="highlight-item">SSH automation &amp; tunnel utilities</span>
+            <span class="highlight-item">Security deployment scripts</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="tag">Bash</span>
+              <span class="tag">Python</span>
+              <span class="tag">Automation</span>
+              <span class="tag">SSH</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -388,21 +400,21 @@
   </div>
 </section>
 
-<!-- ─── Contact ───────────────────────────────────────────────────────────── -->
+<!-- ─── Contact ──────────────────────────────────────────────────────────────── -->
 <section class="section contact-section" id="contact">
   <div class="container">
     <div class="section-header reveal">
       <p class="section-label">// 04 — get in touch</p>
       <h2 class="section-title">Contact <span>Me</span></h2>
-      <div class="section-line"></div>
+      <div class="section-sep"></div>
     </div>
 
     <div class="contact-inner">
       <div class="contact-text reveal">
         <p>
-          I'm open to freelance work, collaboration on security projects, and full-time
+          Open to freelance work, collaboration on security projects, and full-time
           opportunities in cybersecurity or security tooling. Reach out via GitHub or
-          try the interactive terminal.
+          explore the interactive terminal.
         </p>
         <div class="contact-links">
           <a href="https://github.com/karanbhateja" target="_blank" rel="noopener" class="contact-link">
@@ -431,8 +443,9 @@
         </div>
         <div class="ts-body">
           <p class="ts-desc">
-            Try out the interactive terminal — explore my profile, run a fake network scan,
-            or just type <code style="color:var(--green)">help</code>.
+            Explore my profile, run a fake network scan, or just type
+            <code style="color:var(--green);font-family:var(--font-mono)">help</code>
+            to get started.
           </p>
           <div class="cmd-hints">
             <span class="cmd-hint">help</span>
@@ -443,7 +456,7 @@
             <span class="cmd-hint">banner</span>
             <span class="cmd-hint">contact</span>
           </div>
-          <button class="btn btn-primary launch-terminal" style="width:100%; justify-content:center;">
+          <button class="btn btn-primary launch-terminal" style="width:100%;justify-content:center;margin-top:4px">
             &gt;_ Launch Terminal
           </button>
         </div>
@@ -452,7 +465,7 @@
   </div>
 </section>
 
-<!-- ─── Footer ───────────────────────────────────────────────────────────── -->
+<!-- ─── Footer ───────────────────────────────────────────────────────────────── -->
 <footer>
   <div class="container footer-inner">
     <p class="footer-copy">
@@ -461,12 +474,12 @@
     <div class="footer-links">
       <a href="https://github.com/karanbhateja" target="_blank" rel="noopener">GitHub</a>
       <a href="#home">Top ↑</a>
-      <button class="launch-terminal" style="background:none;border:none;color:var(--dim);font-size:0.75rem;cursor:none;font-family:var(--font-mono);padding:0;" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--dim)'">&gt;_ Terminal</button>
+      <button class="launch-terminal" style="background:none;border:none;color:var(--text-2);font-size:0.72rem;font-family:var(--font-mono);padding:0;cursor:none;transition:color .25s" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--text-2)'">&gt;_ Terminal</button>
     </div>
   </div>
 </footer>
 
-<!-- ─── Terminal Modal ────────────────────────────────────────────────────── -->
+<!-- ─── Terminal Modal ────────────────────────────────────────────────────────── -->
 <div class="terminal-modal" id="terminalModal" role="dialog" aria-modal="true" aria-label="Interactive terminal">
   <div class="terminal-window">
     <div class="term-titlebar">
@@ -478,31 +491,21 @@
       <span class="term-title-text">karan@portfolio — bash — 80×24</span>
       <button class="term-close-btn" id="termCloseBtn" aria-label="Close terminal">✕</button>
     </div>
-
     <div class="term-body" id="termBody">
       <div id="termOutput"></div>
     </div>
-
     <div class="term-input-row">
       <span class="term-input-prompt">karan@portfolio:~$</span>
-      <input
-        type="text"
-        id="termInput"
-        autocomplete="off"
-        autocorrect="off"
-        autocapitalize="off"
-        spellcheck="false"
-        placeholder="type a command..."
-        aria-label="Terminal input"
-      />
+      <input type="text" id="termInput" autocomplete="off" autocorrect="off"
+             autocapitalize="off" spellcheck="false"
+             placeholder="type a command..." aria-label="Terminal input" />
     </div>
   </div>
 </div>
 
-<!-- ─── Scripts ───────────────────────────────────────────────────────────── -->
+<!-- Scripts -->
 <script src="js/matrix.js"></script>
 <script src="js/terminal.js"></script>
 <script src="js/main.js"></script>
-
 </body>
 </html>

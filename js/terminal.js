@@ -33,12 +33,11 @@ const Terminal = (() => {
     // ── Banner ─────────────────────────────────────────────────────────────────
     function showBanner() {
         const art = [
-            `<span class="t-green">██╗  ██╗██████╗ </span>`,
-            `<span class="t-green">██║ ██╔╝██╔══██╗</span>`,
-            `<span class="t-green">█████╔╝ ██████╔╝</span>`,
-            `<span class="t-green">██╔═██╗ ██╔══██╗</span>`,
-            `<span class="t-green">██║  ██╗██████╔╝</span>`,
-            `<span class="t-green">╚═╝  ╚═╝╚═════╝ </span> <span class="t-cyan">Karan Bhateja — Cybersecurity Portfolio v1.0</span>`,
+            `<span class="t-green"> _  __ ____  </span>`,
+            `<span class="t-green">| |/ /|  _ \ </span>`,
+            `<span class="t-green">| ' / | |_) |</span>`,
+            `<span class="t-green">| . \ |  _ < </span>`,
+            `<span class="t-green">|_|\_\|_| \_\</span>  <span class="t-cyan">Karan Bhateja — Cybersecurity Portfolio v1.0</span>`,
         ];
         art.forEach(l => print(l));
         nl();
@@ -51,9 +50,9 @@ const Terminal = (() => {
 
         help() {
             nl();
-            print(`<span class="t-cyan">╔══════════════════════════════════════════╗</span>`);
-            print(`<span class="t-cyan">║</span>         <span class="t-green">Available Commands</span>              <span class="t-cyan">║</span>`);
-            print(`<span class="t-cyan">╚══════════════════════════════════════════╝</span>`);
+            print(`<span class="t-cyan">+------------------------------------------+</span>`);
+            print(`<span class="t-cyan">|</span>         <span class="t-green">Available Commands</span>              <span class="t-cyan">|</span>`);
+            print(`<span class="t-cyan">+------------------------------------------+</span>`);
             const cmds = [
                 ['whoami', 'Display identity info'],
                 ['about', 'Full bio & background'],
