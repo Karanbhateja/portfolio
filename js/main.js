@@ -67,8 +67,42 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             t();
         }
+
+        // After the intro sequence, attach a live input row
+        let htActiveInput = null;
+        const heroTermEl = document.getElementById('heroTerminal');
+        if (heroTermEl) {
+            heroTermEl.addEventListener('click', () => { if (htActiveInput) htActiveInput.focus(); });
+        }
+
+        function htActivateLive() {
+            // Input row lives inside htBody as the last child — never removed
+            const row = document.createElement('div');
+            row.className = 'ht-input-row';
+            const pEl = document.createElement('span');
+            pEl.className = 'ht-prompt'; pEl.textContent = 'karan@portfolio:~$ ';
+            const inp = document.createElement('input');
+            inp.type = 'text'; inp.className = 'ht-input'; inp.autocomplete = 'off';
+            inp.spellcheck = false; inp.setAttribute('aria-label', 'terminal input');
+            row.append(pEl, inp);
+            htBody.appendChild(row);
+            htActiveInput = inp;
+
+            Terminal.createTerminal({
+                outputEl:  htBody,
+                cls:       'ht-line',
+                promptStr: 'karan@portfolio:~$',
+                anchorEl:  row,   // output always inserts before this row
+                onClear:   () => {
+                    // remove all output lines, keep the input row
+                    Array.from(htBody.children).forEach(c => { if (c !== row) c.remove(); });
+                },
+                onClose:   () => Terminal.openTerminal(),
+            }).attachInput(inp);
+        }
+
         function run(idx){
-            if(idx>=steps.length){htAddLine('<span class="ht-prompt">karan@portfolio:~$ </span><span class="ht-cursor"></span>'); return;}
+            if(idx>=steps.length){ htActivateLive(); return; }
             const s=steps[idx];
             setTimeout(()=>{
                 if(s.t==='prompt')     htTypeLine(s.text,()=>run(idx+1));
@@ -114,15 +148,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // ══════════════════════════════════════════════════════════════════════════
     //  Scroll effects: hero terminal fade, nav, section links
     // ══════════════════════════════════════════════════════════════════════════
-    const heroTerminal = document.getElementById('heroTerminal');
-    const scrollHint   = document.querySelector('.scroll-hint');
-    const heroSect     = document.getElementById('home');
-    const navbar       = document.querySelector('.navbar');
-    const sections     = document.querySelectorAll('section[id]');
-    const navLinks     = document.querySelectorAll('.nav-link');
+    const heroTerminal   = document.getElementById('heroTerminal');
+    const scrollHint     = document.querySelector('.scroll-hint');
+    const heroSect       = document.getElementById('home');
+    const navbar         = document.querySelector('.navbar');
+    const sections       = document.querySelectorAll('section[id]');
+    const navLinks       = document.querySelectorAll('.nav-link');
+    const scrollProgress = document.getElementById('scrollProgress');
 
     window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
+        const scrollY   = window.scrollY;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        if (scrollProgress) scrollProgress.style.transform = `scaleX(${maxScroll > 0 ? scrollY / maxScroll : 0})`;
 
         // Hero terminal fade
         if (heroTerminal && heroSect) {
@@ -139,6 +176,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let cur = '';
         sections.forEach(s => { if (scrollY >= s.offsetTop - 140) cur = s.id; });
         navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+
+        // Cursor trail color per section
+        document.body.className = document.body.className.replace(/\bin-\S+/g, '').trim();
+        if (cur) document.body.classList.add('in-' + cur);
     }, { passive: true });
 
     // ══════════════════════════════════════════════════════════════════════════

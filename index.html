@@ -14,6 +14,12 @@
 </head>
 <body>
 
+<!-- Scroll progress -->
+<div id="scrollProgress" aria-hidden="true"></div>
+
+<!-- Section bg tint -->
+<div id="sectionGlow" aria-hidden="true"></div>
+
 <!-- Vignette -->
 <div id="vignette" aria-hidden="true"></div>
 
@@ -32,8 +38,8 @@
     </a>
     <ul class="nav-links" id="navMenu" role="list">
       <li><a href="#about"    class="nav-link">About</a></li>
-      <li><a href="#skills"   class="nav-link">Skills</a></li>
       <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#skills"   class="nav-link">Skills</a></li>
       <li><a href="#contact"  class="nav-link">Contact</a></li>
       <li>
         <button class="nav-term-btn launch-terminal" aria-label="Open terminal">
@@ -92,8 +98,8 @@
 
       <div class="hero-stats">
         <div class="stat-item">
-          <div class="stat-num" data-count="4" data-suffix="+">4+</div>
-          <div class="stat-label">Projects Built</div>
+          <div class="stat-num" data-count="8" data-suffix="+">8+</div>
+          <div class="stat-label">Tools Built</div>
         </div>
         <div class="stat-item">
           <div class="stat-num">ISO</div>
@@ -101,11 +107,11 @@
         </div>
         <div class="stat-item">
           <div class="stat-num" data-count="5" data-suffix="+">5+</div>
-          <div class="stat-label">Tools &amp; Platforms</div>
+          <div class="stat-label">Sec Domains</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">∞</div>
-          <div class="stat-label">Lines of Script</div>
+          <div class="stat-num">root</div>
+          <div class="stat-label">Privilege</div>
         </div>
       </div>
     </div>
@@ -157,6 +163,25 @@
           My approach blends technical depth with practical output: every tool I build
           should be deployable, documented, and actually useful in a real security environment.
         </p>
+
+        <div class="about-stats">
+          <div class="about-stat">
+            <div class="about-stat-num" data-count="8" data-suffix="+">8+</div>
+            <div class="about-stat-label">Tools Built</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num" data-count="12" data-suffix="+">12+</div>
+            <div class="about-stat-label">Recon Scripts</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">ISO</div>
+            <div class="about-stat-label">27001 Aligned</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">root</div>
+            <div class="about-stat-label">Always</div>
+          </div>
+        </div>
       </div>
 
       <div class="about-card reveal-right">
@@ -660,14 +685,31 @@
 
 <!-- ─── Footer ───────────────────────────────────────────────────────────────── -->
 <footer>
-  <div class="container footer-inner">
-    <p class="footer-copy">
-      © 2025 <span>Karan Bhateja</span> · Built with passion &amp; too much terminal time
-    </p>
-    <div class="footer-links">
-      <a href="https://github.com/karanbhateja" target="_blank" rel="noopener">GitHub</a>
-      <a href="#home">Top ↑</a>
-      <button class="launch-terminal" style="background:none;border:none;color:var(--text-2);font-size:0.72rem;font-family:var(--font-mono);padding:0;cursor:none;transition:color .25s" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--text-2)'">&gt;_ Terminal</button>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#home" class="footer-logo"><span class="bracket">[</span>KB<span class="bracket">]</span>&gt;<span class="footer-cursor">_</span></a>
+        <p class="footer-tagline">Cybersecurity Engineer · Automation Developer<br>Building tools that solve real problems.</p>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <div class="footer-nav-label">Navigate</div>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-nav-col">
+          <div class="footer-nav-label">Connect</div>
+          <a href="https://github.com/karanbhateja" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:karanbhatejaa@protonmail.com">Email</a>
+          <button class="footer-term-btn launch-terminal">&gt;_ Terminal</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 <span>Karan Bhateja</span> · Built with too much terminal time</p>
+      <a href="#home" class="footer-top-link">Back to top ↑</a>
     </div>
   </div>
 </footer>
