@@ -733,8 +733,10 @@ body.in-contact  { --cursor-color: #ffd166; --cursor-color-rgb: 255,209,102;}
 .cmd-hint {
   font-size: .66rem; padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px;
   color: var(--green); background: rgba(0,255,135,.04); font-family: var(--font-mono);
-  transition: all .2s; cursor: none;
+  transition: all .2s; cursor: none; appearance: none; -webkit-appearance: none;
+  line-height: 1.4; display: inline-flex; align-items: center;
 }
+.cmd-hint::before { content: '> '; opacity: .45; margin-right: 2px; }
 .cmd-hint:hover { background: rgba(0,255,135,0.12); border-color: var(--green); box-shadow: 0 0 10px rgba(0,255,135,0.2); }
 
 /* ═══ Section background glow ════════════════════════════════════════════════ */
@@ -871,6 +873,10 @@ footer::before {
   .about-stat:nth-child(even) { border-right: none; }
   .nav-links   { display: none; }
   .burger      { display: flex; }
+  /* Hero terminal hidden on mobile — no physical keyboard, decorative only */
+  .hero-terminal { display: none; }
+  .hero-container { justify-items: center; text-align: center; }
+  .hero-content { align-items: center; }
   #navMenu.open {
     display: flex; flex-direction: column; gap: 24px;
     position: fixed; top: 60px; left: 0; right: 0; bottom: 0;

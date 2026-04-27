@@ -326,6 +326,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // ══════════════════════════════════════════════════════════════════════════
     Terminal.init();
 
+    // Cmd hints — open terminal and auto-run the command
+    document.querySelectorAll('.cmd-hint[data-cmd]').forEach(btn => {
+        btn.addEventListener('click', () => Terminal.runCommand(btn.dataset.cmd));
+    });
+
+    // Hero terminal: hide interactive input on touch devices (no physical keyboard)
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+        const htInputRow = htBody && htBody.querySelector('.ht-input-row');
+        if (htInputRow) htInputRow.style.display = 'none';
+    }
+
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
             const t = document.querySelector(a.getAttribute('href'));

@@ -572,5 +572,11 @@ const Terminal = (() => {
         });
     }
 
-    return { init, openTerminal, closeTerminal, createTerminal };
+    function runCommand(cmd) {
+        openTerminal();
+        // slight delay so the modal is visible before output appears
+        setTimeout(() => modalEngine.run(cmd), 220);
+    }
+
+    return { init, openTerminal, closeTerminal, createTerminal, runCommand };
 })();
